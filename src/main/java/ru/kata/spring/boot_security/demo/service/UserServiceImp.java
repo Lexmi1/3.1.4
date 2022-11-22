@@ -33,21 +33,25 @@ public class UserServiceImp implements UserService, UserDetailsService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<User> getUsers() {
         return userDao.getUsers();
     }
 
     @Override
+    @Transactional(readOnly = true)
     public User getUser(int id) {
         return userDao.getUser(id);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public User findByUsername(String username) {
         return userDao.getUserByLogin(username);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = findByUsername(username);
         if (user == null) {
@@ -80,6 +84,7 @@ public class UserServiceImp implements UserService, UserDetailsService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Collection<? extends GrantedAuthority> grantedAuthorities(Collection<Role> roles) {
         return roles.stream().map(el -> new SimpleGrantedAuthority(el.getName())).collect(Collectors.toList());
     }

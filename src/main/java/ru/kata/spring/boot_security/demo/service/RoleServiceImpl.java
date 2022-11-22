@@ -21,11 +21,13 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Role findRoleByName(String name) {
         return roleDAO.findByName(name);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Role> getAllRoles() {
         return roleDAO.getAllRoles();
     }
@@ -36,11 +38,13 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Role findById(int id) {
         return roleDAO.findById(id);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Set<Role> findByIdRoles(List<Integer> roles) {
         return roleDAO.findByIdRoles(roles);
     }
